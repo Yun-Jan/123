@@ -1,4 +1,3 @@
-First,Last,UCID,Grade
-Smith,Joe,sj123,B
-Bing,Bing,bb567,A
-Keith,Williams,kw890,A
+First,Last,UCID,Grade,Term
+Keith,Williams,kwilliam,A,Fall
+Smith,Joe,jsmith,B,Fall
