@@ -6,13 +6,12 @@
  * Time: 8:10 PM
  */
 
-main::start();
+main::start("example.cvs");
 
 class main {
-    static public function start() {
-        $records = csv::getRecords();
+    static public function start($filename) {
+        $records = csv::getRecords($filename);
         $table = html::generateTable($records);
-        system::printPage($table);
 
     }
 }
