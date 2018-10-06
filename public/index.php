@@ -13,7 +13,6 @@ class main
     {
         $records = csv::getRecords($filename);
 
-        print_r($records);
 
     }
 }
@@ -24,10 +23,20 @@ class csv {
     static public function getRecords($filename){
 
         $file = fopen($filename, "r");
+
+        $fieldNames=array();
+        $count=0;
+
         while(! feof($file)){
 
             $record = fgetcsv($file);
-            $records[]= recordFactory::create();
+            if($count==0){
+                $fieldNames=$record;
+            } else{
+                $records[]= recordFactory::create($fieldNames,$record);
+            }
+            $count++;
+
         }
 
         fclose($file);
@@ -35,12 +44,30 @@ class csv {
     }
 }
 
-class record{}
+class record{
+    public function __construct(Array $filedNames= null, $values=null){
+
+
+        print_r($fieldNames);
+        print_r($values);
+        $this->createProperty();
+
+    }
+    public function createProperty($name= 'first',$value='keith'){
+
+        $this->{$name} = $value;
+
+    }
+
+
+}
 
 class recordFactory {
-    public static function  create (Array $array=null){
+    public static function  create (Array $fieldNames= null, Array $values=null){
 
-        $record =new record();
+
+        $record =new record($fieldNames,$values);
+
 
         return $record;
 
